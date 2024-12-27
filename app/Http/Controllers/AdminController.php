@@ -25,5 +25,30 @@ public function add_category(Request $request)
     return redirect()->back();
 }
 
+public function delete_category($id)
+{
+    $data = Category::find($id);
+    $data->delete();
+    // toastr()->timeOut(10000)->closeButton()->warning('Category deleted successfully');
+     return redirect()->back();
+}
+
+public function edit_category($id)
+{
+    $data = Category::find($id);
+    return view('admin.edit_category',compact('data'));
+}
+
+public function update_category(Request $request,$id)
+{
+    $data = Category::find($id);
+    $data->category_name = $request->category;
+    $data->save();
+    toastr()->timeOut(10000)->closeButton()->success('Category Updated successfully');
+    return redirect('/view_category');
+
+
+}
+
 }
 

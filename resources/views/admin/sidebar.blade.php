@@ -17,9 +17,9 @@
               </li>
 
               <li>
-                <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
+                <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Product</a>
                 <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                  <li><a href="#">Page</a></li>
+                  <li><a href="{{ url('add_product') }}">Add product</a></li>
                   <li><a href="#">Page</a></li>
                   <li><a href="#">Page</a></li>
                 </ul>

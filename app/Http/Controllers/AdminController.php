@@ -74,5 +74,18 @@ public function upload_product(Request $request)
    return redirect()->back();
 }
 
+public function view_product()
+{
+    $product = Product::paginate(5);
+    return view('admin.view_product',compact('product'));
+}
+
+public function delete_product($id)
+{
+    $product = Product::find($id);
+    $product->delete();
+    toastr()->timeOut(10000)->closeButton()->success('Product deleted successfully');
+    return redirect()->back();
+}
 }
 

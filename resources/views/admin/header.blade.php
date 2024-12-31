@@ -29,9 +29,6 @@
 
               <input type="submit" value="Logout">
             </form>
-
-
-
          </div>
         </div>
       </div>

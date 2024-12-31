@@ -6,32 +6,35 @@
         </h2>
       </div>
       <div class="row">
+
+        @foreach ($products as $product)
+
         <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="box">
-            <a href="">
+
               <div class="img-box">
-                <img src="images/p1.png" alt="">
+                <img src="products/{{ $product->image }}" alt="">
               </div>
               <div class="detail-box">
-                <h6>
-                  Ring
-                </h6>
-                <h6>
-                  Price
-                  <span>
-                    $200
-                  </span>
-                </h6>
+                <h6>{{$product->title}}</h6>
+                <h6><span>${{$product->price}}</span></h6>
               </div>
-              <div class="new">
-                <span>
-                  New
-                </span>
-              </div>
-            </a>
+           <div>
+            <a class="btn btn-primary btn-sm" href="{{ url('product_details',$product->id) }}">Details</a>
+
+            <a class="btn btn-info btn-sm" href="{{ url('add_cart', $product->id) }}">Add to Cart</a>
+
+           </div>
           </div>
         </div>
-        <div class="col-sm-6 col-md-4 col-lg-3">
+
+        @endforeach
+
+
+
+
+
+        {{-- <div class="col-sm-6 col-md-4 col-lg-3">
           <div class="box">
             <a href="">
               <div class="img-box">
@@ -205,12 +208,8 @@
               </div>
             </a>
           </div>
-        </div>
-      </div>
-      <div class="btn-box">
-        <a href="">
-          View All Products
-        </a>
+        </div> --}}
+
       </div>
     </div>
   </section>

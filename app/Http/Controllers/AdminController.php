@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Order;
 
 
 class AdminController extends Controller
@@ -83,9 +84,72 @@ public function view_product()
 public function delete_product($id)
 {
     $product = Product::find($id);
+    $image_path = public_path('products/'.$product->image);   //public folder teke image delete korar jonno
+    if(file_exists($image_path))
+    {
+        unlink($image_path);
+    }
     $product->delete();
     toastr()->timeOut(10000)->closeButton()->success('Product deleted successfully');
     return redirect()->back();
 }
+
+public function update_product($id)
+{
+    $product = Product::find($id);
+    $data = Category::all();
+    return view('admin.update_page',compact('product','data'));
+}
+public function edit_product(Request $request,$id)
+{
+    $product = Product::find($id);
+    $product->title = $request->title;
+    $product->description = $request->description;
+    $product->price = $request->price;
+    $product->quantity = $request->quantity;
+    $product->category = $request->category;
+    $image = $request->image;
+    if($image)
+    {
+     $imagename = time().'.'.$image->getClientOriginalExtension();
+     $request->image->move('products',$imagename);
+     $product->image = $imagename;
+    }
+    $product->save();
+    toastr()->timeOut(10000)->closeButton()->success('Product updated successfully');
+    return redirect('/view_product');
 }
 
+public function search_product(Request $request)
+{
+    $search = $request->search;
+    // $product = Product::where('title','like','%'.$search.'%')->paginate(5);
+    $product = Product::where('title','like','%'.$search.'%')->orWhere('category','like','%'.$search.'%')->paginate(5);
+    return view('admin.view_product',compact('product'));
+}
+
+public function view_order()
+{
+
+    $order = Order::all();
+    return view('admin.order',compact('order'));
+}
+
+public function on_the_way($id)
+{
+    $order = Order::find($id);
+    $order->status = 'on the way';
+    $order->save();
+    return redirect('/view_orders');
+}
+
+public function delivered($id)
+{
+    $order = Order::find($id);
+    $order->status = 'delivered';
+    $order->save();
+    return redirect('/view_orders');
+}
+
+
+}

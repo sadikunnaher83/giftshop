@@ -51,6 +51,7 @@ Route::post('search_product', [AdminController::class, 'search_product'])->middl
  Route::get('view_orders', [AdminController::class, 'view_order'])->middleware(['auth', 'admin']);
  Route::get('on_the_way/{id}', [AdminController::class, 'on_the_way'])->middleware(['auth', 'admin']);
  Route::get('delivered/{id}', [AdminController::class, 'delivered'])->middleware(['auth', 'admin']);
+ Route::get('print_pdf/{id}', [AdminController::class, 'print_pdf'])->middleware(['auth', 'admin']);
 
 
 

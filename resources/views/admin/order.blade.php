@@ -52,6 +52,7 @@
                     <th>Image</th>
                     <th>Status</th>
                     <th>Change Status</th>
+                    <th>Print PDF</th>
                 </tr>
                 @foreach ($order as $order)
                 <tr>
@@ -76,6 +77,9 @@
                     <td>
                         <a class="btn btn-warning btn-sm" href="{{ url('on_the_way',$order->id) }}">On the way</a>
                         <a class="btn btn-success btn-sm" href="{{ url('delivered',$order->id) }}">Delivered</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-sm" href="{{ url('print_pdf',$order->id) }}">Print PDF</a>
                     </td>
 
                 </tr>

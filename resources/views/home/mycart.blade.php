@@ -81,7 +81,9 @@
                 <input type="text" name="phone" value="{{ Auth::user()->phone }}">
             </div>
             <div class="div_gap">
-                <input class="btn btn-success btn-sm" type="submit" value="Place Order">
+                <input class="btn btn-success btn-sm" type="submit" value="Cash on Delivery">
+{{--
+                <a class="btn btn-warning btn-sm" href="">Pay Using Card</a> --}}
             </div>
         </form>
     </div>
@@ -110,10 +112,9 @@
         </td>
     </tr>
 
+
     <?php
-
     $value = $value + $cart->product->price;
-
     ?>
 
     @endforeach

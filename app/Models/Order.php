@@ -16,4 +16,6 @@ class Order extends Model
     {
         return $this->hasOne('App\Models\Product','id','product_id');
     }
+
+
 }

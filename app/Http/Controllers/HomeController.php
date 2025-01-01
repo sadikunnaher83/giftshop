@@ -129,4 +129,12 @@ class HomeController extends Controller
         return redirect()->back()->with('success', 'Order placed successfully');
     }
 
+    public function myorders()
+    {
+        $user = Auth::user()->id;
+        $count  = Order::where('user_id', $user)->count();
+        $order = Order::where('user_id', $user)->get();
+        return view('home.order',compact('count','order'));
+    }
+
 }

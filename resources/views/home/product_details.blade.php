@@ -53,6 +53,9 @@
               <div class="detail-box">
                 <p>{{$product->description}}</p>
              </div>
+             <div class="detail-box">
+                <a class="btn btn-primary btn-sm" href="{{ url('add_cart', $product->id) }}">Add to Cart</a>
+             </div>
           </div>
         </div>
 

@@ -6,6 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
 
+
+
 //  Route::get('/', function () {
 //      return view('home.index');
 //  });
@@ -29,6 +31,21 @@ Route::get('add_cart/{id}', [HomeController::class, 'add_cart'])->middleware(['a
 Route::get('mycart', [HomeController::class, 'mycart'])->middleware(['auth', 'verified']);
 Route::get('remove_cart/{id}', [HomeController::class, 'remove_cart'])->middleware(['auth', 'verified']);
 Route::post('comfirm_order', [HomeController::class, 'comfirm_order'])->middleware(['auth', 'verified']);
+Route::get('shoptp', [HomeController::class, 'shoptp']);
+Route::get('whyus', [HomeController::class, 'whyus']);
+Route::get('testimonial', [HomeController::class, 'testimonial']);
+Route::get('contact', [HomeController::class, 'contact']);
+
+
+
+// test
+
+Route::controller(HomeController::class)->group(function () {
+    Route::get('stripe/{value}', 'stripe');
+    Route::post('stripe/{value}','stripePost')->name('stripe.post');
+});
+
+
 
 
 

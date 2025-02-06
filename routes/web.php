@@ -22,7 +22,7 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 });
 
 //my
-Route::get('/',[HomeController::class, 'home']);
+// Route::get('/',[HomeController::class, 'home']);
 Route::get('/dashboard',[HomeController::class, 'home_login'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('myorders',[HomeController::class, 'myorders'])->middleware(['auth', 'verified']);
 Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'admin']);

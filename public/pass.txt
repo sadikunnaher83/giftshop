@@ -1,0 +1,6 @@
+
+user@user.com 
+pass: 12345678  
+                 
+admin@admin.com 
+pass:  12345678

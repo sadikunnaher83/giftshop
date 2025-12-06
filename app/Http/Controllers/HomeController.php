@@ -26,34 +26,54 @@ class HomeController extends Controller
         return view('admin.index',compact('user','product','order','delivered'));
     }
 
-    public function home()
-    {
-        $products = Product::all();
-        if(Auth::id()){
-            $user = Auth::user();
-            $userid = $user->id;
-            $count = Cart::where('user_id', $userid)->count();
-        }
-        else{
-            $count = '';
-        }
 
-        return view('home.index',compact('products','count'));
-    }
 
-    public function home_login()
-    {
-        $products = Product::all();
-        if(Auth::id()){
-            $user = Auth::user();
-            $userid = $user->id;
-            $count = Cart::where('user_id', $userid)->count();
-        }
-        else{
-            $count = '';
-        }
-        return view('home.index',compact('products','count'));
-    }
+//     public function home()
+// {
+//     $products = Product::all();
+
+//     if(Auth::id()){
+//         $userid = Auth::user()->id;
+//         $count = Cart::where('user_id', $userid)->count();
+//     } else {
+//         $count = '';
+//     }
+
+//     return view('home.index',compact('products','count'));
+// }
+
+
+
+
+
+     public function home()
+     {
+         $products = Product::all();
+         if(Auth::id()){
+             $user = Auth::user();
+             $userid = $user->id;
+             $count = Cart::where('user_id', $userid)->count();
+         }
+         else{
+             $count = '';
+         }
+
+         return view('home.index',compact('products','count'));
+     }
+
+     public function home_login()
+     {
+         $products = Product::all();
+         if(Auth::id()){
+             $user = Auth::user();
+             $userid = $user->id;
+             $count = Cart::where('user_id', $userid)->count();
+         }
+         else{
+             $count = '';
+         }
+     return view('home.index',compact('products','count'));
+     }
 
      public function product_details($id)
      {

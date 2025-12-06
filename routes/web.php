@@ -6,14 +6,16 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
 
+//comments
 
-
-//  Route::get('/', function () {
+//   Route::get('/', function () {
+//       return view('home.index');
+//   });
+//  Route::get('/dashboard', function () {
 //      return view('home.index');
-//  });
-// Route::get('/dashboard', function () {
-//     return view('home.index');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+//  })->middleware(['auth', 'verified'])->name('dashboard');
+
+//comments
 
 Route::middleware('auth')->group(function () {
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -22,8 +24,25 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 });
 
 //my
+
+
+Route::get('/',[HomeController::class, 'home']);
+ Route::get('/dashboard',[HomeController::class, 'home_login'])->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+
 // Route::get('/',[HomeController::class, 'home']);
-Route::get('/dashboard',[HomeController::class, 'home_login'])->middleware(['auth', 'verified'])->name('dashboard');
+
+//  Route::get('/dashboard',[HomeController::class, 'home'])
+//  ->middleware(['auth', 'verified'])
+//  ->name('dashboard');
+
+
+
+
+
+
 Route::get('myorders',[HomeController::class, 'myorders'])->middleware(['auth', 'verified']);
 Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'admin']);
 Route::get('product_details/{id}', [HomeController::class, 'product_details']);
@@ -46,14 +65,6 @@ Route::controller(HomeController::class)->group(function () {
 });
 
 
-
-
-
-
-
-
-
-
 Route::get('view_category', [AdminController::class, 'view_category'])->middleware(['auth', 'admin']);
 Route::post('add_category', [AdminController::class, 'add_category'])->middleware(['auth', 'admin']);
 Route::get('delete_category/{id}', [AdminController::class, 'delete_category'])->middleware(['auth', 'admin']);
@@ -72,20 +83,6 @@ Route::post('search_product', [AdminController::class, 'search_product'])->middl
  Route::get('print_pdf/{id}', [AdminController::class, 'print_pdf'])->middleware(['auth', 'admin']);
 
 
-
-
-
-
-
-
-
-
-
-
-
 //my
-
-
-
 
 require __DIR__.'/auth.php';
